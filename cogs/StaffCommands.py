@@ -24,7 +24,6 @@ class StaffCommands(commands.Cog):
     
 
     @setup.command(name="suggestions", description="Sets up Suggestions")
-
     async def setup_suggestions(
         self,
         ctx: discord.ApplicationContext,
@@ -299,6 +298,20 @@ class StaffCommands(commands.Cog):
         await ctx.send(embed=embed)
         await ctx.send_response("Channel has been unlocked !", ephemeral=True)
         await logs.send(f"{ctx.user.display_name} unlocked {ctx.channel.mention}")
+
+    @commands.slash_command(name="close", description="Close a Ticket")
+    @commands.has_permissions(manage_messages=True)
+    async def close_ticket(
+        self,
+        ctx : discord.ApplicationContext
+    ):
+        if "ticket" in ctx.channel.name:
+            channel1 = self.bot.settings.get("Logs.Channel")
+            await ctx.send("This Ticket Will be deleted in a few moments.")
+            await channel1.send(f"{ctx.user.display_name} has deleted {ctx.channel.name}")
+            await ctx.channel.delete()
+            await channel1.send(f"{ctx.user.display_name} has deleted {ctx.channel.name}")
+            
 
 
     #=================================

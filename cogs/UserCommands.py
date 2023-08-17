@@ -117,7 +117,8 @@ class UserCommands(commands.Cog):
         self,
         ctx: discord.ApplicationContext,
     ):
-        await ctx.send_response("The ip is currently not available. Check <#1123787587052638239> for updates", ephemeral=True)
+        embed = discord.Embed(description="The ip is currently not available. Check <#1123787587052638239> for updates")
+        await ctx.send_response(embed=embed)
 
 def setup(bot: commands.Bot):
     bot.add_cog(UserCommands(bot))
