@@ -1,4 +1,4 @@
-# Klair Bot
+# CrackedNetwork Bot
 
 ### Getting started
 Create a `.env` File with following Content:
