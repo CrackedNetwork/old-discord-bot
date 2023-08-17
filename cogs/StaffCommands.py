@@ -306,7 +306,7 @@ class StaffCommands(commands.Cog):
         ctx : discord.ApplicationContext
     ):
         if "ticket" in ctx.channel.name:
-            channel1 = self.bot.settings.get("Logs.Channel")
+            channel1 = self.bot.get_channel(self.bot.settings.get("Logs.Channel"))
             await ctx.send("This Ticket Will be deleted in a few moments.")
             await channel1.send(f"{ctx.user.display_name} has deleted {ctx.channel.name}")
             await ctx.channel.delete()
