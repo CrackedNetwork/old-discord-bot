@@ -47,12 +47,12 @@ class StaffCommands(commands.Cog):
         self.bot.settings.set("Suggestions.Denied", denied.id)
         self.bot.settings.set("Suggestions.Deleted", deleted.id)
         embed = discord.Embed(
-            title="📢 Welcome to the Klair Suggestion System! (Inspired by Hybris!)",
+            title="📢 Welcome to the CrackedNetwork Suggestion System! (Inspired by Hybris!)",
             description="🤔 Have a great idea or suggestion for our server? We'd love to hear it! Our suggestion system makes it easy for you to share your thoughts and for us to manage and track your suggestions effectively."
         )
         embed.add_field(name="🗳️ Submitting a Suggestion", value='- 1. Click on the "Submit a suggestion" button below.\n- 2. A modal will appear, allowing you to provide details about your suggestion.\n- 3. Fill out the form with as much information as possible to help us understand your idea.\n- 4. Hit the "Submit" button to send your suggestion.\n', inline=False)
         embed.add_field(name="📝 Review Process:", value="- Once you've submitted a suggestion, it will be reviewed by our team.\n- Initially, your suggestion will appear in the ⁠<#1130812603426426910> thread for evaluation.\n- Our team will carefully consider your suggestion and provide updates as necessary.\n- If your suggestion is accepted, it will be moved to the ⁠<#1130812755629309965> thread. If your suggestion is not feasible or aligns with our current plans, it will be moved to the <#1130812858523979806> thread.\n\n- We'll keep you updated on the status of your suggestion throughout the process.\n", inline=False)
-        embed.add_field(name="📌 Important Reminders:", value="- Ensure your suggestion is constructive and aligns with the goals of our server.\n- Avoid submitting duplicate suggestions. Check the existing suggestions before posting.\n- Be patient! The review process may take some time, but we value your input.\n\n👍 Thank you for taking the time to contribute to the Klair community! Your suggestions help us make our products even better. If you have any questions, feel free to ask in the support channel.", inline=False)
+        embed.add_field(name="📌 Important Reminders:", value="- Ensure your suggestion is constructive and aligns with the goals of our server.\n- Avoid submitting duplicate suggestions. Check the existing suggestions before posting.\n- Be patient! The review process may take some time, but we value your input.\n\n👍 Thank you for taking the time to contribute to the CrackedNetwork community! Your suggestions help us make our products even better. If you have any questions, feel free to ask in the support channel.", inline=False)
         embed.set_footer(text="Inspired from Hybris, https://discord.gg/hybris")
         await panel.send(embed=embed, view=CreateSuggestion(bot=self.bot))
         embed = discord.Embed(title="Setup", description="Suggestion successfully setup")
@@ -93,12 +93,12 @@ class StaffCommands(commands.Cog):
         self,
         ctx: discord.ApplicationContext,
     ):
-        embed1 = discord.Embed(title="Klair", description="Welcome to the Official Discord Server of Klair Client. We are pleased to have you in our journey :D. Before continuing please read the rules and obey them, any user who breaks the rules is going to face some consequences (that is, ban, mute). NOTE: This Discord Server's Layout is inspired by Klair.", color=discord.Color.red())
-        embed1.set_footer(icon_url="https://asicalug.netlify.app/storage/klair.png",)
+        embed1 = discord.Embed(title="CrackedNetwork", description="Welcome to the Official Discord Server of CrackedNetwork Client. We are pleased to have you in our journey :D. Before continuing please read the rules and obey them, any user who breaks the rules is going to face some consequences (that is, ban, mute). NOTE: This Discord Server's Layout is inspired by CrackedNetwork.", color=discord.Color.red())
+        embed1.set_footer(icon_url="https://asicalug.netlify.app/storage/CrackedNetwork.png",)
         embed2 = discord.Embed(url="https://discord.gg/Hybris", title="Hybris' Discord", color=discord.Color.red())
         embed3 = discord.Embed(title="", color=discord.Color.red())
-        embed3.set_image(url="https://media.discordapp.net/attachments/1120373785967738880/1121014281727639684/Klair_Rules.png?width=1040&height=585")
-        embed4 = discord.Embed(description="Check out the Rules before Starting Your Journey In our Discord Server - Klair", title="", color=discord.Color.red())
+        embed3.set_image(url="https://media.discordapp.net/attachments/1120373785967738880/1121014281727639684/CrackedNetwork_Rules.png?width=1040&height=585")
+        embed4 = discord.Embed(description="Check out the Rules before Starting Your Journey In our Discord Server - CrackedNetwork", title="", color=discord.Color.red())
         embed5 = discord.Embed(title="", description="Remember, the rules are applied to all the behaviour on the server including Moderators and Staffs. If you See anyone breaking the Rules, report it to any online Staff/Mod.", color=discord.Color.red())
         embed5.add_field(name="Rules", value="* 1. Be Respectful and dont be mean to others :D\n\n* 2. No Spamming\n\n* 3. No Advertising,\n\n* 4. No Threatening\n\n* 5. Dont share any personal information\n\n* 6. Be a good person :D")
         await ctx.send_response(embeds=(embed1, embed2, embed3, embed4, embed5))
@@ -157,7 +157,7 @@ class StaffCommands(commands.Cog):
         channel = self.bot.get_channel(self.bot.settings.get("Logs.Channel"))
         member = ctx.guild.get_member(ctx.user.id)
         await ctx.send_response(f"<@{user.id}> has been warned", ephemeral=True)
-        embed = discord.Embed(title="Warned", description=f"You've been warned by <@{member.id}> in the Klair discord server, you now have `{warns}` warns.")
+        embed = discord.Embed(title="Warned", description=f"You've been warned by <@{member.id}> in the CrackedNetwork discord server, you now have `{warns}` warns.")
         embed.add_field(name="Reason", value=f"{reason}")
         await user.send(embed=embed)
         await channel.send(f"<@{user.id}> has been warned by <@{member.id}> for {reason} and has now `{warns}` warns.")
@@ -176,7 +176,7 @@ class StaffCommands(commands.Cog):
         warns = self.bot.settings.get(f"Warns.{user.id}")
         channel = self.bot.get_channel(self.bot.settings.get("Logs.Channel"))
         await ctx.send_response(f"{number} warns have been removed from <@{user.id}>", ephemeral=True)
-        embed = discord.Embed(title="Warns Removed", description=f"{number} warns has been removed from your account on the Klair discord server, you now have `{warns}` warns.")
+        embed = discord.Embed(title="Warns Removed", description=f"{number} warns has been removed from your account on the CrackedNetwork discord server, you now have `{warns}` warns.")
         await user.send(embed=embed)
         await channel.send(f"<@{member.id}> has removed {number} warns from <@{user.id}> and has now `{warns}` warns.")
 
@@ -280,7 +280,7 @@ class StaffCommands(commands.Cog):
         logs = self.bot.get_channel(self.bot.settings.get("Logs.Channel"))
         await ctx.channel.set_permissions(ctx.guild.default_role, send_messages=False)
         embed = discord.Embed(title="Channel Locked", description="This Channel has been locked, please be patient while we fix any issues.", color=discord.Color.yellow())
-        embed.set_footer(text="Klair Staff.")
+        embed.set_footer(text="CrackedNetwork Staff.")
         await ctx.send(embed=embed)
         await ctx.send_response("Channel has been locked !", ephemeral=True)
         await logs.send(f"{ctx.user.display_name} locked {ctx.channel.mention}")
@@ -294,7 +294,7 @@ class StaffCommands(commands.Cog):
         logs = self.bot.get_channel(self.bot.settings.get("Logs.Channel"))
         await ctx.channel.set_permissions(ctx.guild.default_role, send_messages=True)
         embed = discord.Embed(title="Channel Unlocked", description="This Channel has been unlocked.", color=discord.Color.green())
-        embed.set_footer(text="Klair Staff.")
+        embed.set_footer(text="CrackedNetwork Staff.")
         await ctx.send(embed=embed)
         await ctx.send_response("Channel has been unlocked !", ephemeral=True)
         await logs.send(f"{ctx.user.display_name} unlocked {ctx.channel.mention}")
