@@ -311,6 +311,25 @@ class StaffCommands(commands.Cog):
             await channel1.send(f"{ctx.user.display_name} has deleted {ctx.channel.name}")
             await ctx.channel.delete()
             await channel1.send(f"{ctx.user.display_name} has deleted {ctx.channel.name}")
+
+    @commands.slash_command(name="add", description="Add a member to a ticket")
+    @commands.has_permissions(manage_messages=True)
+    async def add_to_ticket(
+        self,
+        ctx : discord.ApplicationContext,
+        member : Option(discord.Member)
+    ):
+        if "ticket" in ctx.channel.name:
+            channel = self.bot.get_channel(ctx.channel.id)
+            channel1 = self.bot.get_channel(self.bot.settings.get("Logs.Channel"))
+            overwrites = {
+                ctx.guild.default_role: discord.PermissionOverwrite(read_messages=False),
+                ctx.guild.me: discord.PermissionOverwrite(read_messages=True),
+                member: discord.PermissionOverwrite(read_messages=True), 
+            }
+            await channel.edit(overwrites=overwrites)
+            await ctx.send_response(f"Added {member.mention}.")
+            await channel1.send(f"{ctx.user.display_name} added {member.display_name} in {ctx.channel.mention}.")
             
 
 
