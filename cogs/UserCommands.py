@@ -107,7 +107,7 @@ class UserCommands(commands.Cog):
         username : Option(str),
         reason : Option(str)
     ):
-        embed=discord.Embed(title=f"{discord.User.name}'s report", description=f"{username} has been reported for:\n{reason}")
+        embed=discord.Embed(title=f"{ctx.user.name}'s report", description=f"{username} has been reported for:\n{reason}")
         channel=await self.bot.fetch_channel(1123069291286233137)
         await ctx.send_response("Your report has been sent and a staff member will review it shortly.", ephemeral=True)
         await channel.send(embed=embed)
