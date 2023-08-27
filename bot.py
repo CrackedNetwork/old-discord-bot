@@ -9,6 +9,7 @@ from discord.ext import commands
 from dotenv import load_dotenv
 
 from utils.settings import Settings
+from discord.utils import get
 
 from cogs.StaffCommands import StaffCommands
 
@@ -31,11 +32,9 @@ for filename in os.listdir("./cogs"):
         bot.load_extension(f"cogs.{filename[:-3]}")
 
 @bot.event
-async def on_message(message):
-    if "eta" in message.content.lower():
-        if message.author != bot.user:
-            await message.reply("There is currently no ETA. Please read <#1120369654653788302>")
-            
+async def on_member_join(member):
+    role = discord.utils.get(member.guild.roles, name='Member')
+    await member.add_roles(role)
 
 @bot.event
 async def on_ready():

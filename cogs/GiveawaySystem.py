@@ -25,7 +25,8 @@ class GiveawaySystem(commands.Cog):
         ctx : discord.ApplicationContext,
         prizetype : Option(str, description="This will be shown in the giveaway signup embed"),
         time : Option(int, description="Time for the giveaway (**IN HOURS**)"),
-        prize : Option(str, "This will be dmed to the winner")
+        prize : Option(str, "This will be dmed to the winner"),
+        winners : Option(int, "Number of members that will win the giveaway")
     ):
         dt = datetime.now()
         td = timedelta(hours=time)
