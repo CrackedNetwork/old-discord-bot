@@ -13,6 +13,12 @@ class UserCommands(commands.Cog):
     def __init__(self, bot: commands.Bot) -> None:
         self.bot = bot
         print(f"{self.__class__.__name__} loaded")
+
+    @commands.slash_command()
+    async def help(self, ctx : discord.ApplicationContext):
+        embed = discord.Embed(title="CrackedNetwork Help", description="Need a hand? Here.")
+        embed.add_field(name="Info", value="</ping:1140896737360347167> Shows the latency of the bot.\n", inline=True)
+        embed.add_field(name="Moderation", value="being worked on.")
     
     @commands.slash_command()
     async def ping(self, ctx: discord.ApplicationCommand):
@@ -87,14 +93,12 @@ class UserCommands(commands.Cog):
     ):
         creation = ctx.guild.created_at.strftime("%A, %B %d %Y @ %H:%M:%S %p")
         member_count = ctx.guild.member_count
-        roles = [role.mention for role in ctx.guild.roles]
         txt_channels = [channel.mention for channel in ctx.guild.text_channels]
         vc_channels = [channel.mention for channel in ctx.guild.voice_channels]
         categories = [channel.mention for channel in ctx.guild.categories]
         embed = discord.Embed(title=f"ServerInfo ({ctx.guild.name})", description=f"")
         embed.add_field(name="Created at", value=f"{creation}", inline=False)
         embed.add_field(name="Member Count", value=f"{member_count}", inline=False)
-        embed.add_field(name="Roles", value=f"{roles}", inline=False)
         embed2 = discord.Embed(title="Text Channels", description=f"{txt_channels}")
         embed2.add_field(name="Voice Channels", value=f"{vc_channels}", inline=False)
         embed2.add_field(name="Categories", value=f"{categories}", inline=False)

@@ -13,6 +13,7 @@ class CreateTicket(discord.ui.View):
 
     @discord.ui.button(label="Create a Ticket", style=discord.ButtonStyle.primary, custom_id="create_ticket", emoji="📩")
     async def button_callback(self, button, interaction: discord.Interaction):
+        
         overwrites = {
              interaction.guild.default_role: discord.PermissionOverwrite(read_messages=False),
              interaction.guild.me: discord.PermissionOverwrite(read_messages=True),
@@ -25,6 +26,7 @@ class CreateTicket(discord.ui.View):
         guild = interaction.guild
         category = discord.utils.get(guild.categories, id=self.bot.settings.get("Tickets.Category"))
         channel = await guild.create_text_channel(name=f"ticket-{ticket_count_after}-{interaction.user.display_name}", category=category, overwrites=overwrites)
+        await channel.edit(sync_permissions=True)
         await channel.send(f"{interaction.user.mention} Welcome!",embed=embed, view=CloseTicket(bot=self.bot))
         self.bot.settings.set(f"Tickets.UserChannel.{interaction.user.id}", channel.id) # type: ignore
         channel1 = self.bot.get_channel(self.bot.settings.get("Logs.Channel"))

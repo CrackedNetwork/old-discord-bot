@@ -3,6 +3,7 @@ import discord
 from discord import Interaction
 from discord.ext import commands
 from discord.commands import SlashCommandGroup, Option
+from discord.ui import View, Button
 
 from modals.EmbedCreation import EmbedCreation
 from modals.ChangeLog import ChangelogModal
@@ -10,6 +11,8 @@ from modals.SendDM import DMEmbedCreation
 
 from views.NewSuggestionView import CreateSuggestion
 from views.NewTicketView import CreateTicket
+from views.UpvotePollView import UpvotePoll
+from views.DownvotePollView import DownvotePoll
 
 from random import randint
 
@@ -21,6 +24,7 @@ class StaffCommands(commands.Cog):
     setup = SlashCommandGroup(name="setup", description="Various Setup Commands")
     embed = SlashCommandGroup(name="embed", description="Various Embed Commands")
     dming = SlashCommandGroup(name="dm", description="Various DMing Commands")
+    create = SlashCommandGroup(name="create", description="Various creating commands")
     
 
     @setup.command(name="suggestions", description="Sets up Suggestions")
@@ -330,6 +334,19 @@ class StaffCommands(commands.Cog):
             await channel.edit(overwrites=overwrites)
             await ctx.send_response(f"Added {member.mention}.")
             await channel1.send(f"{ctx.user.display_name} added {member.display_name} in {ctx.channel.mention}.")
+
+    @create.command(name="poll", description="create a poll for users to vote in")
+    @commands.has_permissions(manage_messages=True)
+    async def create_poll(
+        self,
+        ctx : discord.ApplicationContext,
+        subject: Option(str, description="The subject you want your users to vote about")
+    ):
+        embed = discord.Embed(title="Poll", description=f"`{subject}`")
+        view = View()
+        view.add_item(UpvotePoll(bot=self.bot))
+        view.add_item(DownvotePoll(bot=self.bot))
+        await ctx.send_response(embed=embed, view=view)
             
 
 

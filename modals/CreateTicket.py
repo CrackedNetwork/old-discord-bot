@@ -35,6 +35,7 @@ class TicketModal(discord.ui.Modal):
         guild = interaction.guild
         category = discord.utils.get(guild.categories, id=self.bot.settings.get("Tickets.Category"))
         channel = await guild.create_text_channel(name=f"ticket-{ticket_count_after}-{interaction.user.display_name}", category=category, overwrites=overwrites)
+        await channel.edit(sync_permissions=True)
         await channel.send(f"{interaction.user.mention} Welcome!",embed=embed, view=CloseTicket(bot=self.bot))
         self.bot.settings.set(f"Tickets.UserChannel.{interaction.user.id}", channel.id) # type: ignore
         channel1 = self.bot.get_channel(self.bot.settings.get("Logs.Channel"))
