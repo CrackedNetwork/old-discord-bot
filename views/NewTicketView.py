@@ -13,7 +13,6 @@ class CreateTicket(discord.ui.View):
 
     @discord.ui.button(label="Create a Ticket", style=discord.ButtonStyle.primary, custom_id="create_ticket", emoji="📩")
     async def button_callback(self, button, interaction: discord.Interaction):
-        
         overwrites = {
              interaction.guild.default_role: discord.PermissionOverwrite(read_messages=False),
              interaction.guild.me: discord.PermissionOverwrite(read_messages=True),
